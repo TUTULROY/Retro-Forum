@@ -125,10 +125,10 @@ const displayPosts = (posts) => {
                 </div>
                 <h2 class="card-title font-bold">${data.title}</h2>
                 <p>${data.description}</p>
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2">
                     <img class="w-11 h-11 rounded-full" src="${data.profile_image}" alt="">
                     <div>
-                        <h4 class="text-xl font-semibold">${data.author.name}</h4>
+                        <h4 class="text-xl font-bold">${data.author.name}</h4>
                         <p>${data.author?.designation || "Unknown"}</p>
                     </div>
                 </div>
