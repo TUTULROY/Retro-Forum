@@ -7,13 +7,66 @@ displayPosts(posts);
 }
 
 
-const loadLatestPost = async() =>{
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
-    const data = await res.json();
-    const latestPost = data.latest_posts;
-    console.log(latestPost);
+// const loadLatestPost = async() =>{
+//     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+//     const data = await res.json();
+//     const latestPost = data.latest_posts;
+//     console.log(latestPost);
 
-}
+// }
+
+const loadLatestPost = async () => {
+    try {
+      const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+  
+      if (!res.ok) {
+        throw new Error(`Failed to fetch data. Status: ${res.status}`);
+      }
+  
+      const data = await res.json();
+  
+      if (!Array.isArray(data) || data.length === 0) {
+        throw new Error('Invalid or empty data received from the API.');
+      }
+  
+      console.log(data);
+     
+  
+    } catch (error) {
+      console.error('Error fetching or processing data:', error.message);
+    }
+  };
+  const displayData = (data) =>{
+    const authorContainer = document.getElementById('author-container');
+    authorContainer.innerHTML = '';
+    data.forEach((data) => {
+        const viewDiv = document.createElement('div');
+        div.innerHTML = `
+        <figure><img src="${data.cover_image}"
+                alt="" /></figure>
+        <div class="mt-4 space-y-3">
+            <div class="flex gap-2">
+                
+                <p>${data.author?.posted_date || "No Publish Date"}</p>
+            </div>
+            <h2 class="card-title font-bold">${data.title}</h2>
+            <p>${data.description}</p>
+            <div class="flex items-center gap-3">
+                <img class="w-11 h-11 rounded-full" src="${data.profile_image}" alt="">
+                <div>
+                    <h4 class="text-xl font-semibold">${data.author.name}</h4>
+                    <p>${data.author?.designation || "Unknown"}</p>
+                </div>
+            </div>
+        </div>
+    
+        `;
+        authorContainer.appendChild(viewDiv);
+    });
+
+  };
+  
+  
 
 const displayPosts = (posts) => {
     const cardContainer = document.getElementById('card-container');
