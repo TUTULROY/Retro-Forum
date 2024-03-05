@@ -7,13 +7,6 @@ displayPosts(posts);
 }
 
 
-// const loadLatestPost = async() =>{
-//     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
-//     const data = await res.json();
-//     const latestPost = data.latest_posts;
-//     console.log(latestPost);
-
-// }
 
 const loadLatestPost = async () => {
     try {
@@ -36,35 +29,7 @@ const loadLatestPost = async () => {
       console.error('Error fetching or processing data:', error.message);
     }
   };
-  const displayData = (data) =>{
-    const authorContainer = document.getElementById('author-container');
-    authorContainer.innerHTML = '';
-    data.forEach((data) => {
-        const viewDiv = document.createElement('div');
-        div.innerHTML = `
-        <figure><img src="${data.cover_image}"
-                alt="" /></figure>
-        <div class="mt-4 space-y-3">
-            <div class="flex gap-2">
-                
-                <p>${data.author?.posted_date || "No Publish Date"}</p>
-            </div>
-            <h2 class="card-title font-bold">${data.title}</h2>
-            <p>${data.description}</p>
-            <div class="flex items-center gap-3">
-                <img class="w-11 h-11 rounded-full" src="${data.profile_image}" alt="">
-                <div>
-                    <h4 class="text-xl font-semibold">${data.author.name}</h4>
-                    <p>${data.author?.designation || "Unknown"}</p>
-                </div>
-            </div>
-        </div>
-    
-        `;
-        authorContainer.appendChild(viewDiv);
-    });
-
-  };
+ 
   
   
 
@@ -141,6 +106,39 @@ const displayPosts = (posts) => {
         `
         markRead.appendChild(div);
     };
+
+    const displayData = (data) =>{
+        const authorContainer = document.getElementById('author-container');
+        authorContainer.innerHTML = '';
+        data.forEach((data) => {
+            const viewDiv = document.createElement('div');
+            viewDiv.innerHTML = `
+            <figure><img src="${data.cover_image}"
+                    alt="" /></figure>
+            <div class="mt-4 space-y-3">
+                <div class="flex gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+              </svg>
+              
+                    <p>${data.author?.posted_date || "No Publish Date"}</p>
+                </div>
+                <h2 class="card-title font-bold">${data.title}</h2>
+                <p>${data.description}</p>
+                <div class="flex items-center gap-3">
+                    <img class="w-11 h-11 rounded-full" src="${data.profile_image}" alt="">
+                    <div>
+                        <h4 class="text-xl font-semibold">${data.author.name}</h4>
+                        <p>${data.author?.designation || "Unknown"}</p>
+                    </div>
+                </div>
+            </div>
+        
+            `;
+            authorContainer.appendChild(viewDiv);
+        });
+    
+      };
     
     // console.log(posts);
 
