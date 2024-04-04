@@ -16,19 +16,26 @@ const loadLatestPost = async () => {
         throw new Error(`Failed to fetch data. Status: ${res.status}`);
       }
   
-      const data = await res.json();
+      const latestPost = await res.json();
   
-      if (!Array.isArray(data) || data.length === 0) {
+      if (!Array.isArray(latestPost) || latestPost.length === 0) {
         throw new Error('Invalid or empty data received from the API.');
       }
   
-      console.log(data);
+      displayData(latestPost);
      
   
     } catch (error) {
       console.error('Error fetching or processing data:', error.message);
     }
   };
+// const loadLatestPost = async () =>{
+//     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+//     const data = await res.json();
+//     const latestPost = data.latestPost;
+// displayPosts(latestPost);
+//      console.log(latestPost);
+// }
  
   
   
@@ -91,9 +98,9 @@ const displayPosts = (posts) => {
 };
 
     const markRead = (id, view) => {
-        const markRead=getElementById('mark_read');
-        let readCount=parseInt(getElementById('read_count').innerText)+1;
-        document.getElementById('read_count').innerText=readCount;
+        const markRead=getElementById('mark-read');
+        let readCount=parseInt(getElementById('read-count').innerText)+1;
+        document.getElementById('read-count').innerText= readCount;
         const postTitle=getElementById(id).innerText
         const div = document.createElement('div');
         div.innerHTML = `
@@ -107,11 +114,12 @@ const displayPosts = (posts) => {
         markRead.appendChild(div);
     };
 
-    const displayData = (data) =>{
+    const displayData = (latestPost) =>{
         const authorContainer = document.getElementById('author-container');
         authorContainer.innerHTML = '';
-        data.forEach((data) => {
+        latestPost.forEach((data)=> {
             const viewDiv = document.createElement('div');
+            // viewDiv.classList = `card grid w-96 bg-base-300 shadow-xl`;
             viewDiv.innerHTML = `
             <figure><img src="${data.cover_image}"
                     alt="" /></figure>
@@ -139,6 +147,23 @@ const displayPosts = (posts) => {
         });
     
       };
+
+      const searchPosts = ()=> {
+        const inputFieldValue = getElementById('input-field').value.toLowerCase();
+        loadPosts(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${inputFieldValue}`);
+        document.getElementById('discuss-posts').classList.add('hidden');
+        document.getElementById('spinner').classList.remove('hidden');
+        spinnerLoading();
+    }
+    
+    // loadLatestPost();
+    // loadPosts();
+    
+    
+    // const getElementById = (id) => {
+    //     return document.getElementById(id);
+    // };
+    
     
     // console.log(posts);
 
