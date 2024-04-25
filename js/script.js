@@ -1,9 +1,9 @@
 const latestPost = async () =>{
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`);
     const data = await res.json();
     const posts = data.posts;
 displayPosts(posts);
-    // console.log(post);
+    
 }
 
 
@@ -29,13 +29,7 @@ const loadLatestPost = async () => {
       console.error('Error fetching or processing data:', error.message);
     }
   };
-// const loadLatestPost = async () =>{
-//     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
-//     const data = await res.json();
-//     const latestPost = data.latestPost;
-// displayPosts(latestPost);
-//      console.log(latestPost);
-// }
+
  
   
   
@@ -148,24 +142,32 @@ const displayPosts = (posts) => {
     
       };
 
-      const searchPosts = ()=> {
-        const inputFieldValue = getElementById('input-field').value.toLowerCase();
+      const handleSearch = ()=> {
+        // const inputFieldValue = getElementById('search-field').value.toLowerCase();
+        const inputFieldValue = document.getElementById('search-field').value.toLowerCase();
         loadPosts(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${inputFieldValue}`);
+        
         document.getElementById('discuss-posts').classList.add('hidden');
         document.getElementById('spinner').classList.remove('hidden');
         spinnerLoading();
+        loadPosts(searchText);
+        
     }
+
+    const loadPosts = async (searchText) =>{
+        const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
+        const data = await res.json();
+        const category = data.data;
+        displayPosts(category)
+    }
+
     
-    // loadLatestPost();
-    // loadPosts();
+    
+
+
+
     
     
-    // const getElementById = (id) => {
-    //     return document.getElementById(id);
-    // };
-    
-    
-    // console.log(posts);
 
 
 

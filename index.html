@@ -8,11 +8,11 @@
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white">
-    <header class="mx-2">
+    <header class="mx-2  max-w-6xl mx-auto">
 
         <!-- Navber Section  -->
         <section>
-        <div class="navbar bg-base-700 ">
+        <div class="navbar bg-base-700">
             <div class="navbar-start">
               <div class="dropdown">
                 <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -79,19 +79,16 @@
                   <a class="tooltip bg-[#fff]" data-tip="Flag">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
-                        </svg>
-                        
-                  </a>
-                 
-                    
-</div>
+                      </svg>                     
+                  </a>  
+                  </div>
               </ul>
             </div>
             
             <div class="navbar-end gap-2">
   
 
-              <a class="btn bg-[#797DFC] text-white">Sign In</a>
+              <a class="btn bg-[#797DFC] border-gray-100 text-white rounded-full">Sign In</a>
             </div>
           </div>
         </section>
@@ -123,8 +120,8 @@
                     <p class="py-6">Share your favorite opinion and win and wp <br> forum coffee mug!</p>
                   
                       <label class="input input-bordered flex items-center gap-4 rounded-full bg-white ">
-                        <input type="text" class="grow" placeholder="Search" />
-                        <span onclick="searchPost()" class=" btn btn-primary border-gray-100 rounded-full">Search</span>
+                        <input id="search-field" type="text" class="grow" placeholder="Search" />
+                        <button onclick="handleSearch()" class=" btn btn-sm btn-primary border-gray-100 rounded-full">Search</button>
                       </label>
                      
                   </div>
@@ -132,7 +129,7 @@
               </div>
         </Section>
     </header>
-    <main>
+    <main class="max-w-6xl mx-auto">
     <section>
         <div class="text-center text-black mt-7 mb-7">
             <h1 class="text-3xl text-black font-bold">Let’s Discuss</h1>
@@ -169,7 +166,7 @@
 
         <div class="hero min-h-screen bg-base-100">
             <div class="hero-content flex-col lg:flex-row-reverse">
-              <img src="images/joinforum.png" class="max-w-sm rounded-lg shadow-2xl" />
+              <img  src="images/joinforum.png" class="max-w-sm shadow-2xl" />
               <div>
                 <h1 class="text-5xl text-white font-bold">Join Our Forum</h1>
                 <p class="py-6">Share your favorite opinion and win and wp forum coffee mug! Yes, you can <br> run unit tests and view the results directly within the app. </p>
@@ -185,7 +182,7 @@
             <p class="text-black">Yes, you can run unit tests and view the results directly within the app. The <br> integrated testing features allow for a streamlined . </p>
         </div>
         <div class="text-center max-w-5xl mx-auto">
-            <div id="author-container" class="card  grid grid-cols-3  w-full bg-base-700 gap-7 rounded-xl">
+            <div id="author-container" class="card  lg:grid lg:grid-cols-3  w-full bg-base-700 gap-7 rounded-xl">
                
               </div>
               
